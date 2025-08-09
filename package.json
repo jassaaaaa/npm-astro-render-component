@@ -1,6 +1,6 @@
 {
     "name": "@igor.dvlpr/astro-render-component",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "🤖 Plug-and-play Astro component renderer for fast, zero-config testing in any DOM-like JS/TS environment. 🐬",
     "sideEffects": false,
     "engines": {
