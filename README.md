@@ -56,7 +56,7 @@ Bring your own testing framework, e.g. [Vitest](https://vitest.dev/) and your ow
 ## 🗒️ Example
 
 ```ts
-// @vitest-environment happy-dom
+// @​vitest-environment happy-dom
 import { renderAstroComponent } from '@igor.dvlpr/astro-render-component'
 import MyComponent from '../components/MyComponent.astro'
 import { expect } from 'vitest'
