@@ -10,7 +10,7 @@ import {
  * Renders an Astro component to a `DocumentFragment` in a DOM-like environment.
  *
  * This utility is primarily intended for testing or server-side rendering scenarios
- * where a simulated DOM (e.g., `jsdom`, `happy-dom`) is available. It instantiates
+ * where a simulated DOM (e.g., `happy-dom`) is available. It instantiates
  * an `AstroContainer`, renders the component to an HTML string, and parses it into
  * a `DocumentFragment` for further inspection or manipulation.
  *
@@ -18,13 +18,15 @@ import {
  * @param options - Optional rendering configuration passed to the container (e.g., props, slots).
  * @returns A Promise that resolves to a `DocumentFragment` containing the rendered output.
  *
- * @throws Will throw if executed in a non-DOM environment (e.g., Node.js without `jsdom`).
+ * @throws Will throw if executed in a non-DOM environment (e.g., Node.js without happy-dom`).
  * @throws Will throw if the component fails to render.
  *
  * @example
- * ```ts
+ * ``` ts
+ * // @​vitest-environment happy-dom
  * import { renderAstroComponent } from '@igor.dvlpr/astro-render-component'
  * import MyComponent from '../components/MyComponent.astro'
+ * import { expect } from 'vitest'
  *
  * const fragment = await renderAstroComponent(MyComponent, { props: { title: 'Hello' } })
  * expect(fragment.querySelector('h1')?.textContent).toBe('Hello')
@@ -36,7 +38,7 @@ export async function renderAstroComponent(
 ): Promise<DocumentFragment> {
   if (typeof document === 'undefined') {
     throw new Error(
-      'renderAstroComponent requires a DOM-like environment (e.g., happy-dom, jsdom)'
+      'renderAstroComponent requires a DOM-like environment (e.g., happy-dom)'
     )
   }
 
