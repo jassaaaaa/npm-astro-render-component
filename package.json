@@ -1,7 +1,7 @@
 {
-    "name": "@igor.dvlpr/{{pkg}}",
-    "version": "{{version}}",
-    "description": "{{desc}}",
+    "name": "@igor.dvlpr/astro-render-component",
+    "version": "1.0.0",
+    "description": "🤖 Plug-and-play Astro component renderer for fast, zero-config testing in any DOM-like JS/TS environment. 🐬",
     "sideEffects": false,
     "engines": {
         "node": ">=20.0"
@@ -9,30 +9,48 @@
     "types": "./dist/index.d.mts",
     "main": "./dist/index.mjs",
     "module": "./dist/index.mjs",
-    "files": ["dist/*.mjs", "dist/*.d.mts"],
+    "files": [
+        "dist/*.mjs",
+        "dist/*.d.mts"
+    ],
     "scripts": {
         "build": "tsc",
-        "test": "vitest --run",
-        "dev": "tsc --sourceMap --watch",
-        "pub": "npm test && npm run build && npm publish --access public"
+        "pub": "npm run build && npm publish --access public"
     },
-    "keywords": ["{{tags}}", "igorskyflyer", "igor.dvlpr"],
+    "keywords": [
+        "astro",
+        "render",
+        "test",
+        "dom",
+        "ui",
+        "testing",
+        "happy-dom",
+        "jsdom",
+        "environment",
+        "vitest",
+        "jest",
+        "igorskyflyer",
+        "igor.dvlpr"
+    ],
     "license": "MIT",
     "author": "Igor Dimitrijević <igor.dvlpr@gmail.com> (https://github.com/igorskyflyer)",
     "funding": "https://ko-fi.com/igorskyflyer",
-    "homepage": "https://github.com/igorskyflyer/{{repo}}",
+    "homepage": "https://github.com/igorskyflyer/npm-astro-render-component",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/igorskyflyer/{{repo}}.git"
+        "url": "git+https://github.com/igorskyflyer/npm-astro-render-component.git"
     },
     "bugs": {
-        "url": "https://github.com/igorskyflyer/{{repo}}/issues"
+        "url": "https://github.com/igorskyflyer/npm-astro-render-component/issues"
     },
     "devDependencies": {
-        "@biomejs/biome": "^1.8.3",
-        "@igor.dvlpr/biome-config-igorskyflyer": "^1.0.3",
+        "@biomejs/biome": "^2.1.4",
+        "@igor.dvlpr/biome-config-igorskyflyer": "^2.0.1",
         "@types/node": "^20.14.14",
         "typescript": "^5.5.4",
-        "vitest": "^2.0.5"
+        "vitest": "^3.2.4"
+    },
+    "peerDependencies": {
+        "astro": "^5.0.0"
     }
 }
