@@ -1,48 +1,24 @@
-<h1 align="center">{{project}}</h1>
+<div align="center">
+  <img src="https://raw.githubusercontent.com/igorskyflyer/npm-astro-render-component/main/assets/astro-render-component.png" alt="Icon of Astro Render Component" width="256" height="256">
+<h1 align="center">Astro Render Component</h1>
+</div>
 
 <br>
 
 <div align="center">
-  {{desc}}
+  🤖 Plug-and-play Astro component renderer for fast, zero-config testing in any DOM-like JS/TS environment. 🐬
 </div>
 
 <br>
 <br>
 
-<div align="center">
-  <blockquote>
-    <br>
-    <h4>💖 Support further development</h4>
-    <span>I work hard for every project, including this one
-    <br>
-    and your support means a lot to me!
-    <br>
-    <br>
-    Consider buying me a coffee. ☕
-    <br>
-    <strong>Thank you for supporting my efforts! 🙏😊</strong></span>
-    <br>
-    <br>
-    <a href="https://ko-fi.com/igorskyflyer" target="_blank"><img src="https://raw.githubusercontent.com/igorskyflyer/igorskyflyer/main/assets/ko-fi.png" alt="Donate to igorskyflyer" width="150"></a>
-    <br>
-    <br>
-    <a href="https://github.com/igorskyflyer"><em>@igorskyflyer</em></a>
-    <br>
-    <br>
-    <br>
-  </blockquote>
-</div>
-
-<br>
-<br>
-
-## 📃 Table of contents
+## 📃 Table of Contents
 
 - [Features](#-features)
 - [Usage](#-usage)
-- [API](#-api)
-- [Examples](#-examples)
+- [Example](#️-example)
 - [Changelog](#-changelog)
+- [Support](#-support)
 - [License](#-license)
 - [Related](#-related)
 - [Author](#-author)
@@ -51,69 +27,82 @@
 
 ## 🤖 Features
 
-- 
-- 
-- 
+- 🔧 Server-side rendering of Astro components in non-Astro environments like Vitest or Node.js
+- 🧪 Test-friendly API for rendering `.astro` components with props, slots, and hydration strategies
+- 🪄 Zero-config usage—just import and render, no need for full Astro setup
+- 🧩 Supports static, lazy, and client-only hydration modes
+- 🧠 Typed API with JSDoc annotations for IntelliSense and DX-first workflows
+- 🕸️ Compatible with Astro v5+, leveraging the experimental [AstroContainer API](https://docs.astro.build/en/reference/container-reference/)
+- 🚀 Ideal for unit and integration testing of UI components
 
 <br>
 
 ## 🕵🏼 Usage
 
-Install it by executing:
-
-```shell
-npm i '@igor.dvlpr/{{pkg}}'
-```
-
 ---
 
-## 🤹🏼 API
+## 🗒️ Example
 
----
-
-## ✨ Examples
-
-`example.mts`
-```ts
-import {  } from '@igor.dvlpr/{{pkg}}'
-
-```
 
 ---
 
 ## 📝 Changelog
 
-📑 The changelog is available here: [CHANGELOG.md](https://github.com/igorskyflyer/{{repo}}/blob/main/CHANGELOG.md).
+📑 The changelog is available here: [CHANGELOG.md](https://github.com/igorskyflyer/npm-astro-render-component/blob/main/CHANGELOG.md).
 
 ---
 
 ## 🪪 License
 
-Licensed under the MIT license which is available here, [MIT license](https://github.com/igorskyflyer/{{repo}}/blob/main/LICENSE).
+Licensed under the MIT license which is available here, [MIT license](https://github.com/igorskyflyer/npm-astro-render-component/blob/main/LICENSE.txt).
+
+---
+
+## 💖 Support
+
+<div align="center">
+  I work hard for every project, including this one and your support means a lot to me!
+  <br>
+  Consider buying me a coffee. ☕
+  <br>
+  <br>
+  <a href="https://ko-fi.com/igorskyflyer" target="_blank"><img src="https://raw.githubusercontent.com/igorskyflyer/igorskyflyer/main/assets/ko-fi.png" alt="Donate to igorskyflyer" width="180" height="46"></a>
+  <br>
+  <br>
+  <em>Thank you for supporting my efforts!</em> 🙏😊
+</div>
 
 ---
 
 ## 🧬 Related
 
-[]()
+[@igor.dvlpr/astro-easynav-button](https://www.npmjs.com/package/@igor.dvlpr/astro-easynav-button)
 
-> __
+> _🧭 Add an easy-to-use navigational button (jump to top/bottom) to your Astro site. 🔼_
 
-[]()
+<br>
 
-> __
+[@igor.dvlpr/astro-post-excerpt](https://www.npmjs.com/package/@igor.dvlpr/astro-post-excerpt)
 
-[]()
+> _⭐ An Astro component that renders post excerpts for your Astro blog - directly from your Markdown and MDX files. Astro v2+ collections are supported as well! 💎_
 
-> __
+<br>
 
-[]()
+[@igor.dvlpr/chars-in-string](https://www.npmjs.com/package/@igor.dvlpr/chars-in-string)
 
-> __
+> _🪐 Provides ways of testing whether an array of chars is present inside a given String. ☄_
 
-[]()
+<br>
 
-> __
+[@igor.dvlpr/magic-queryselector](https://www.npmjs.com/package/@igor.dvlpr/magic-queryselector)
+
+> _🪄 A TypeScript-types patch for querySelector/querySelectorAll, make them return types you expect them to! 🔮_
+
+<br>
+
+[@igor.dvlpr/vscode-folderpicker](https://www.npmjs.com/package/@igor.dvlpr/vscode-folderpicker)
+
+> _✨ Provides a custom Folder Picker API + UI for Visual Studio Code. 🎨_
 
 ---
 
