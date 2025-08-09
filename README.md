@@ -25,8 +25,6 @@
 
 ---
 
-<br>
-
 ## 🤖 Features
 
 - 🔧 Server-side rendering of Astro components in non-Astro environments like Vitest or Node.js
