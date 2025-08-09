@@ -39,10 +39,31 @@
 
 ## 🕵🏼 Usage
 
+Install the package using your favorite package manager:
+
+```bash
+npm install "@igor.dvlpr/astro-render-component"
+# or
+pnpm add "@igor.dvlpr/astro-render-component"
+# or
+yarn add "@igor.dvlpr/astro-render-component"
+```  
+
+Bring your own testing framework, e.g. [Vitest](https://vitest.dev/) and your own DOM-like environment, e.g. [Happy-Dom](https://www.npmjs.com/package/happy-dom) and start rendering your Astro components in order to test them.
+
 ---
 
 ## 🗒️ Example
 
+```ts
+// @vitest-environment happy-dom
+import { renderAstroComponent } from '@igor.dvlpr/astro-render-component'
+import MyComponent from '../components/MyComponent.astro'
+import { expect } from 'vitest'
+
+const fragment = await renderAstroComponent(MyComponent, { props: { title: 'Hello' } })
+expect(fragment.querySelector('h1')?.textContent).toBe('Hello')
+```
 
 ---
 
