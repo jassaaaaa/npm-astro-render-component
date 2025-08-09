@@ -18,6 +18,7 @@
         "pub": "npm run build && npm publish --access public"
     },
     "keywords": [
+        "withastro",
         "astro",
         "render",
         "utility",
