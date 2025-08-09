@@ -35,7 +35,7 @@
 - 🕸️ Compatible with Astro v5+, leveraging the experimental [AstroContainer API](https://docs.astro.build/en/reference/container-reference/)
 - 🚀 Ideal for unit and integration testing of UI components
 
-<br>
+---
 
 ## 🕵🏼 Usage
 
